@@ -1,16 +1,18 @@
-# Frontend: Login using your wallet
+# Metamask Authentication Example
 
-We want to authenticate using our Metamask wallet. To do this we will make the user sign a message which is exchanged with the backend. The backend will on its turn, respond with an authorization token.
+This repository hosts solution to a coding challenge which asks to implement a auth flow using the Metamask extension.
 
-## To start
+The flow is something like the following
 
-- Install npm modules in backend using `yarn` or `npm install` and run it using `yarn start` or `npm start`
-- Create a frontend using `create-react-app` or anything that you deem fit
+- user clicks on Login Button
+- the frontend queries a backend API endpoint for a nonce string
+- the frontend queries the MetaMask extension for associated ETH accounts and signs the nonce
+- the frontend queries another backend API endpoint with the nonce, signature, and current ETH address (extracted from MetaMask)
+- the backend validates the address with the recovered address from the signature and sends back a authorization token
+- the auth token is displayed in the frontend
 
-## Assignment
+This ensures the address extracted from MetaMask extension, and the address that was used to sign the nonce is the same.
 
-Show that you can create the authentication flow. We don't want anything fancy looking, just displaying the authentication token retrieved on the end suffices.
+### Stack
 
-## Handing in
-
-Zip folders but exclude the node_modules folder :)
+`pnpm` has been used as the node package manager, `vite` is the frontend build tool.
